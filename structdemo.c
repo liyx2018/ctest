@@ -1,8 +1,17 @@
-//结构体
-// Created by Administrator on 2019/1/8.
-//
 #include <stdio.h>
 #include <mhash.h>
+#include "test.h"
+//无参宏定义   #define 标识符 替换列表
+#define MODULENAME "北京市政府\
+迁移到通州区\"
+//有参宏定义  #define 标识符(参数1,参数2,...,参数n) 替换列表
+#define MAX(a,b) ((a)>(b)?(a) : (b))
+//删除宏定义的格式符  #undef 标识符
+#undef MAX
+
+#define BOOL int
+#define TRUE 1
+#define FALSE 0
 
 //#define 只是简单的字符串替换,而 typedef 则是为一个类型引入一个新的别名
 // typedef 语句的一般形式是: typedef 已定义的类型 新的类型;
@@ -35,6 +44,37 @@ int sum(int a, int b) {
 void getMaxValue(struct TEACHER info[5]);//声明函数
 
 int main() {
+//---------------------------字符串-------------两种方式：字符数组存储|字符指针存储------------------------------------------------------
+    char array[4];
+    array[0] = 'h';
+    array[1] = 'i';
+    array[2] = 'k';
+    array[3] = '\0';
+    printf("%s\n",array);
+    printf("字符串长度:%d\n",strlen(array));
+    printf("字符串占用内存字节:%d\n", sizeof(array));
+    printf("----------------------------------------------------\n");
+    char str1[] ="hello";
+    printf("%s\n",str1);
+    printf("字符串长度:%d\n",strlen(str1));
+    printf("字符串占用内存字节:%d\n", sizeof(str1));
+    printf("----------------------------------------------------\n");
+    //字符数组
+    char str12[]={'I','m'};
+    printf("%c\n",str12[0]);
+    // 计算数组中数据长度 :
+    // 所有数据的字节数除以一个数据的字节数即为数据的个数 :
+    size_t size= sizeof(str12) / sizeof(str12[0]);
+    printf("数组的长度为: %d\n",size);
+
+    for (int i = 0; i < size; ++i) {
+        printf("%c\n",str12[i]);
+    }
+
+    printf("字符数组占用内存字节:%d\n", sizeof(str12));
+
+
+
 //-----------------------------结构体------------------------------------------------------------------
     //结构体初始化
     struct STUDENT stu1 = {
@@ -146,9 +186,6 @@ int main() {
 
     /* 使用 free() 函数释放内存 */
     free(description);
-//---------------------------头文件-------------------------------------------------------------------
-
-
 
     return 0;
 }
